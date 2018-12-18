@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
+SCRIPT_FOLDER=$(dirname $(readlink -f $0))
+. "$SCRIPT_FOLDER/lib/colors.sh"
 
 function create {
+    setColor "$BG_BLACK"
+
     if [ -z "$2" ]; then
         echo "Usage: "$1" \$nameOfApp"
         exit
@@ -8,39 +12,51 @@ function create {
 
     exitIfFolderExists "$2"
 
-    printTitle "Creating App "$2":"
+    printTitle "$1: $2"
     mkdir $2
     cd $2
 }
 
 function install {
+    setColor "$WHITE_BOLD"
     echo -e "\nInstalling dependencies..."
+    setColor "$COLORLESS"
     npm upgrade
     npm install
+    setColor "$GREEN"
     echo -e "\n Happy Hacking! \n"
+    setColor "$COLORLESS"
     printEndOfSection
 }
 
 function installRootAnd {
-    echo "Installing dependencies..."
+    setColor "$WHITE_BOLD"
+    echo -e "\nInstalling dependencies..."
+    setColor "$COLORLESS"
     npm upgrade
     npm install
     cd "$1"
     npm upgrade
     npm install
+    setColor "$GREEN"
     echo -e "\n Happy Hacking! \n"
+    setColor "$COLORLESS"
 
     printEndOfSection
 }
 
 function printTitle {
+    setColor "$WHITE_BOLD"
     echo -e "------------------------------------------------------------------------"
     echo -e "$1"
     echo -e "------------------------------------------------------------------------"
+    setColor "$COLORLESS"
 }
 
 function printEndOfSection {
+    setColor "$WHITE_BOLD"
     echo -e "------------------------------------------------------------------------\n"
+    setColor "$COLORLESS"s
 }
 
 function includeRepository {
@@ -68,6 +84,7 @@ function includeGulp {
 
 function exitIfFolderExists {
     if [ -d "$PWD"/"$1" ]; then
+        setColor "$RED"
         echo "Error: The chosen folder name already exists."
         exit
     fi
