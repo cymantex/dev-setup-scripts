@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-. "./functions.sh"
+SCRIPT_FOLDER=$(dirname $(readlink -f $0))
+. "$SCRIPT_FOLDER/lib/functions.sh"
 
 create "create-react-app" "$1"
 includeRepository "create-react-app"
