@@ -2,6 +2,12 @@
 SCRIPT_FOLDER=$(dirname $(readlink -f $0))
 . "$SCRIPT_FOLDER/lib/colors.sh"
 
+function runNodeScript {
+    cp -r "$SCRIPT_FOLDER/node/$1" "$PWD"/scripts
+    ts-node scripts.ts setupClientServer "$2"
+    rm -rf "$PWD/scripts/setupClientServer.ts"
+}
+
 function printTitle {
     setColor "$WHITE_BOLD"
     echo -e "------------------------------------------------------------------------"

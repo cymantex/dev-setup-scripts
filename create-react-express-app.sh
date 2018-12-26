@@ -7,5 +7,6 @@ includeRepository "create-react-app" "client"
 includeRepository "typescript-express"
 includeSass "client/src/sass"
 install "."
+runNodeScript "setupClientServer.ts" $1
 install "client"
 endCreateScript
