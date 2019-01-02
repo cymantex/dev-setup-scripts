@@ -78,7 +78,8 @@ const getPackageJson = () => {
     packageClone.scripts = {
         "init": "npm install && cd client && npm install",
         "dev": "concurrently \"npm run startClient\" \"npm run startServer\"",
-        "build": "cd client && npm run build",
+        "start": "cross-env NODE_ENV=production node build/index.js",
+        "build": "tsc && cd client && npm run build",
         "test": "concurrently \"npm run testServer\" \"npm run testClient\"",
         "startServer": "nodemon",
         "testServer": "cross-env NODE_ENV=test ts-mocha server/test/**/*.ts --timeout 10000",
