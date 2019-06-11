@@ -6,7 +6,7 @@ SCRIPT_FOLDER=$(dirname $(readlink -f $0))
 function startCreateScript {
     setColor "$BG_BLACK"
 
-    if [ -z "$2" ]; then
+    if [[ -z "$2" ]]; then
         echo "Usage: "$1" \$nameOfApp"
         exit
     fi
@@ -23,7 +23,7 @@ function install {
     setColor "$WHITE_BOLD"
     echo -e "\nInstalling dependencies..."
     setColor "$COLORLESS"
-    npm upgrade
+    npm update --dev
     npm install
 }
 

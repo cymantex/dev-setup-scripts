@@ -23,7 +23,7 @@ function printEndOfSection {
 }
 
 function exitIfFolderExists {
-    if [ -d "$PWD"/"$1" ]; then
+    if [[ -d "$PWD"/"$1" ]]; then
         setColor "$RED"
         echo "Error: The chosen folder name already exists."
         exit
